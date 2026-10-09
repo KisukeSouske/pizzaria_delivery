@@ -1,5 +1,14 @@
 import enum
-from sqlalchemy import create_engine, Column, Integer, String, Boolean, ForeignKey, Float, Enum
+from sqlalchemy import (
+    create_engine,
+    Column,
+    Integer,
+    String,
+    Boolean,
+    ForeignKey,
+    Float,
+    Enum,
+)
 from sqlalchemy.orm import declarative_base
 
 # Cria a conexão com o banco de dados SQLite
@@ -17,6 +26,7 @@ Base = declarative_base()
     PEPERONI = 1
     CALABRESA = 2
     PORTUGUESA = 3 """
+
 
 # Usuario
 class Usuario(Base):
@@ -50,6 +60,7 @@ class Pedido(Base):
         self.status = status
         self.usuario = usuario
         self.preco_total = preco_total
+
 
 # Carrinho
 class Carrinho(Base):

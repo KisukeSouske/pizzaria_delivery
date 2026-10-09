@@ -1,6 +1,7 @@
 from models import db
 from sqlalchemy.orm import sessionmaker
 
+
 def criar_sessao():
     try:
         Session = sessionmaker(bind=db)
