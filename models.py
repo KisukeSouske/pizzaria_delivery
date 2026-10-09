@@ -59,7 +59,7 @@ class Carrinho(Base):
     usuario = Column("usuario", ForeignKey("usuarios.id"))
     preco_total = Column("preco_total", Float)
 
-    def __init__(self, usuario, preco_total):
+    def __init__(self, usuario, preco_total=0):
         self.usuario = usuario
         self.preco_total = preco_total
 
