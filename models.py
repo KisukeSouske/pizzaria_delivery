@@ -17,15 +17,12 @@ db = create_engine("sqlite:///pizzaria.db", echo=True)
 # Cria a base de dados
 Base = declarative_base()
 
-""" class STATUS_PEDIDO(enum.Enum):
-    AGUARDANDO_PGTO = 1
-    FINALIZADO = 2
-    CANCELADO = 3 """
 
-""" class PIZZA(enum.Enum):
-    PEPERONI = 1
-    CALABRESA = 2
-    PORTUGUESA = 3 """
+# O status é gravado como texto na coluna `pedidos.status` (String)
+class StatusPedido(str, enum.Enum):
+    AGUARDANDO_PGTO = "AGUARDANDO_PGTO"
+    FINALIZADO = "FINALIZADO"
+    CANCELADO = "CANCELADO"
 
 
 # Usuario
@@ -45,6 +42,21 @@ class Usuario(Base):
         self.senha = senha
         self.ativo = ativo
         self.admin = admin
+
+
+# Pizza (catálogo)
+class Pizza(Base):
+    __tablename__ = "pizzas"
+
+    id = Column("id", Integer, primary_key=True, autoincrement=True)
+    nome = Column("nome", String(100), unique=True, nullable=False)
+    preco = Column("preco", Float, nullable=False)
+    ativo = Column("ativo", Boolean, default=True)
+
+    def __init__(self, nome, preco, ativo=True):
+        self.nome = nome
+        self.preco = preco
+        self.ativo = ativo
 
 
 # Pedido
@@ -87,8 +99,9 @@ class ItemPedido(Base):
     preco = Column("preco", Float, nullable=False)
     pizza = Column("pizza", String)
 
-    def __init__(self, carrinho, preco_unitario, quantidade):
+    def __init__(self, carrinho, pizza, preco_unitario, quantidade):
         self.carrinho = carrinho
+        self.pizza = pizza
         self.preco_unitario = preco_unitario
         self.quantidade = quantidade
-        self.preco = preco_unitario * quantidade
+        self.preco = round(preco_unitario * quantidade, 2)

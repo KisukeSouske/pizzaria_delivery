@@ -11,6 +11,7 @@ from fastapi.security import OAuth2PasswordRequestForm
 auth_router = APIRouter(prefix="/auth", tags=["Authentication"])
 SESSION_DEPENDENCY = Depends(criar_sessao)
 
+
 def criar_token(id_usuario, duracao=timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)):
     data_expiracao = datetime.now(timezone.utc) + duracao
     dict_info = {"sub": str(id_usuario), "exp": data_expiracao}
@@ -72,10 +73,16 @@ async def login(login_schema: LoginSchema, session: Session = SESSION_DEPENDENCY
             "token_type": "Bearer",
         }
 
-@auth_router.post("/login-form")
-async def login_form(dados_formulario: OAuth2PasswordRequestForm = Depends(), session: Session = SESSION_DEPENDENCY):
 
-    usuario = autenticar_usuario(dados_formulario.username, dados_formulario.password, session)
+@auth_router.post("/login-form")
+async def login_form(
+    dados_formulario: OAuth2PasswordRequestForm = Depends(),
+    session: Session = SESSION_DEPENDENCY,
+):
+
+    usuario = autenticar_usuario(
+        dados_formulario.username, dados_formulario.password, session
+    )
     if not usuario:
         raise HTTPException(
             status_code=400, detail="Usuário não encontrado ou credenciais inválidas."
@@ -86,6 +93,7 @@ async def login_form(dados_formulario: OAuth2PasswordRequestForm = Depends(), se
             "access_token": access_token,
             "token_type": "Bearer",
         }
+
 
 @auth_router.get("/refresh")
 async def use_refresh_token(usuario: Usuario = Depends(verificar_token)):
