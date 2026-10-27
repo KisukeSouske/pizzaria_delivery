@@ -1,5 +1,22 @@
+# Python
 .venv
 __pycache__/
 .pytest_cache/
+*.py[cod]
+
+# Banco local e segredos
 pizzaria.db
 .env
+
+# Node / front-end
+# Ficam aqui, e não só em frontend/.gitignore, para valerem em qualquer branch:
+# ao trocar para uma branch sem o frontend, as sobras de node_modules/ e dist/
+# continuam no disco e sem estas linhas voltam a ser candidatas ao commit.
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Editores e sistema
+.vscode/
+.idea/
+.DS_Store
