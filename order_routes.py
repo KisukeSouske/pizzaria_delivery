@@ -140,15 +140,28 @@ async def adicionar_item(
     )
     if not pizza:
         raise HTTPException(status_code=404, detail="Pizza não encontrada no cardápio.")
-    # Nome e preço são copiados do catálogo para o item: o preço vem sempre do
-    # servidor e o pedido mantém o valor da época, mesmo se o catálogo mudar.
-    item = ItemPedido(
-        carrinho=carrinho.id,
-        pizza=pizza.nome,
-        preco_unitario=pizza.preco,
-        quantidade=item_schema.quantidade,
+    
+    item_existente = (
+        session.query(ItemPedido)
+        .filter(ItemPedido.carrinho == carrinho.id, ItemPedido.pizza == pizza.nome)
+        .first()
     )
-    session.add(item)
+    if item_existente:
+        item_existente.quantidade += item_schema.quantidade
+        item_existente.preco = round(
+            item_existente.preco_unitario * item_existente.quantidade, 2
+        )
+    else:
+        # Nome e preço são copiados do catálogo para o item: o preço vem sempre
+        # do servidor e o pedido mantém o valor da época, mesmo se o catálogo
+        # mudar.
+        item = ItemPedido(
+            carrinho=carrinho.id,
+            pizza=pizza.nome,
+            preco_unitario=pizza.preco,
+            quantidade=item_schema.quantidade,
+        )
+        session.add(item)
     session.flush()
     carrinho.preco_total = calcular_total(itens_do_carrinho(carrinho, session))
     session.commit()
