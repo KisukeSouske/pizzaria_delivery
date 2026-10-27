@@ -104,6 +104,14 @@ class TestServices:
         assert autenticar_usuario(ana["email"], "senha-errada", db) is None
         assert autenticar_usuario("ninguem@teste.com", ana["senha"], db) is None
 
+    def test_autenticar_usuario_rejeita_senha_gravada_sem_hash(self, db):
+        # Cadastros anteriores ao bcrypt guardaram a senha em texto puro. O
+        # passlib não reconhece o valor como hash e levantava UnknownHashError.
+        db.add(Usuario("antigo", "antigo@teste.com", "12345"))
+        db.commit()
+
+        assert autenticar_usuario("antigo@teste.com", "12345", db) is None
+
     def test_buscar_carrinho_valida_existencia_e_dono(self, db, ana, beto):
         carrinho = Carrinho(usuario=ana["id"])
         db.add(carrinho)
@@ -186,6 +194,19 @@ class TestAuth:
         self, client, ana, email, senha
     ):
         resposta = client.post("/auth/login", json={"email": email, "senha": senha})
+
+        assert resposta.status_code == 400
+
+    def test_login_de_cadastro_sem_hash_retorna_400_e_nao_500(
+        self, client, session_factory
+    ):
+        with session_factory() as session:
+            session.add(Usuario("antigo", "antigo@teste.com", "12345"))
+            session.commit()
+
+        resposta = client.post(
+            "/auth/login", json={"email": "antigo@teste.com", "senha": "12345"}
+        )
 
         assert resposta.status_code == 400
 
