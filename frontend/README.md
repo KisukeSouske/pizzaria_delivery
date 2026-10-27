@@ -3,6 +3,17 @@
 Interface em React + TypeScript (Vite) para a API deste repositório: cardápio,
 carrinho, checkout e acompanhamento dos pedidos.
 
+## Telas
+
+| Cardápio e carrinho | Meus pedidos |
+| :--- | :--- |
+| ![Cardápio com o carrinho preenchido](../assets/screenshots/cardapio.jpg) | ![Lista de pedidos com um deles aberto](../assets/screenshots/pedidos.jpg) |
+
+No celular o cardápio vira uma coluna só, a navegação desce para baixo do logo e
+o carrinho fica abaixo da lista:
+
+<img src="../assets/screenshots/mobile.jpg" alt="Cardápio no celular" width="300">
+
 ## Estrutura
 
 ```

@@ -2,6 +2,8 @@
 
 API de delivery de pizzaria feita com FastAPI, SQLAlchemy e Alembic: cadastro e login (JWT), cardápio, carrinho e pedidos.
 
+![Cardápio e carrinho](assets/screenshots/cardapio.jpg)
+
 ## Estrutura
 
 ```
@@ -17,7 +19,7 @@ app/
 └── services/           # regras e consultas reutilizadas pelas rotas
 alembic/                # migrations
 tests/                  # testes automatizados
-assets/                 # imagens do cardápio
+assets/                 # imagens do cardápio e prints das telas
 frontend/               # interface React + TypeScript (ver frontend/README.md)
 ```
 
@@ -44,7 +46,8 @@ npm run dev
 ```
 
 A interface sobe em http://localhost:5173 e fala com a API por um proxy do
-Vite, então não é preciso liberar CORS. Detalhes em `frontend/README.md`.
+Vite, então não é preciso liberar CORS. As outras telas e os detalhes de
+implementação estão em `frontend/README.md`.
 
 ## Migrations
 
