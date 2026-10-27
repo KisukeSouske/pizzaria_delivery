@@ -1,15 +1,16 @@
 from fastapi import Depends, HTTPException
-from main import SECRET_KEY, ALGORITHM, oauth2_schema
-from models import db
-from sqlalchemy.orm import sessionmaker, Session
-from models import Usuario
-from jose import jwt, JWTError
+from jose import JWTError, jwt
+from sqlalchemy.orm import Session
+
+from app.core.config import ALGORITHM, SECRET_KEY
+from app.core.security import oauth2_schema
+from app.db.session import SessionLocal
+from app.models import Usuario
 
 
 def criar_sessao():
+    session = SessionLocal()
     try:
-        Session = sessionmaker(bind=db)
-        session = Session()
         yield session
     finally:
         session.close()

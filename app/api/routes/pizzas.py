@@ -1,9 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import func
 from sqlalchemy.orm import Session
-from dependences import criar_sessao, verificar_admin
-from schemas import PizzaSchema, PizzaUpdateSchema, PizzaResponseSchema
-from models import Pizza, Usuario
+
+from app.api.dependencies import criar_sessao, verificar_admin
+from app.models import Pizza, Usuario
+from app.schemas import PizzaResponseSchema, PizzaSchema, PizzaUpdateSchema
 
 pizza_router = APIRouter(prefix="/pizzas", tags=["Pizzas"])
 SESSION_DEPENDENCY = Depends(criar_sessao)

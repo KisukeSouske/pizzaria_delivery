@@ -1,29 +1,17 @@
+from datetime import timedelta
+
 from fastapi import APIRouter, Depends, HTTPException
-from models import Usuario
-from dependences import criar_sessao, verificar_token
-from main import bcrypt_context, ALGORITHM, ACCESS_TOKEN_EXPIRE_MINUTES, SECRET_KEY
-from schemas import UsuarioSchema, LoginSchema
-from sqlalchemy.orm import Session
-from jose import jwt, JWTError
-from datetime import datetime, timedelta, timezone
 from fastapi.security import OAuth2PasswordRequestForm
+from sqlalchemy.orm import Session
+
+from app.api.dependencies import criar_sessao, verificar_token
+from app.core.security import bcrypt_context, criar_token
+from app.models import Usuario
+from app.schemas import LoginSchema, UsuarioSchema
+from app.services.auth import autenticar_usuario
 
 auth_router = APIRouter(prefix="/auth", tags=["Authentication"])
 SESSION_DEPENDENCY = Depends(criar_sessao)
-
-
-def criar_token(id_usuario, duracao=timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)):
-    data_expiracao = datetime.now(timezone.utc) + duracao
-    dict_info = {"sub": str(id_usuario), "exp": data_expiracao}
-    jwt_codificado = jwt.encode(dict_info, SECRET_KEY, ALGORITHM)
-    return jwt_codificado
-
-
-def autenticar_usuario(email, senha, session):
-    usuario = session.query(Usuario).filter_by(email=email).first()
-    if not usuario or not bcrypt_context.verify(senha, usuario.senha):
-        return None
-    return usuario
 
 
 @auth_router.get("/")

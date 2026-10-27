@@ -19,9 +19,15 @@ config = context.config
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
+from app.core.config import DATABASE_URL
+
+# A URL do banco vem de app/core/config.py (variável DATABASE_URL), a mesma da API.
+config.set_main_option("sqlalchemy.url", DATABASE_URL.replace("%", "%%"))
+
 # add your model's MetaData object here
 # for 'autogenerate' support
-from models import Base
+import app.models  # noqa: F401  (registra todas as tabelas em Base.metadata)
+from app.db.session import Base
 
 target_metadata = Base.metadata
 
