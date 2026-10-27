@@ -1,0 +1,41 @@
+.carta {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: var(--cor-superficie);
+  border-radius: var(--raio-medio);
+  box-shadow: var(--sombra-carta);
+}
+
+.imagem {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  background-color: var(--cor-superficie-suave);
+}
+
+.rodape {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px;
+}
+
+.titulo {
+  font-size: 1.125rem;
+  font-weight: 400;
+}
+
+.botao {
+  flex-shrink: 0;
+  padding: 9px 18px;
+  border-radius: var(--raio-pequeno);
+  background-color: var(--cor-primaria);
+  color: var(--cor-texto-invertido);
+  font-size: 0.9375rem;
+}
+
+.botao:hover:not(:disabled) {
+  background-color: var(--cor-primaria-escura);
+}

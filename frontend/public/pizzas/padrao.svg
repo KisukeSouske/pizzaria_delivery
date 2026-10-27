@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-label="Imagem indisponível">
+  <rect width="320" height="200" fill="#efe3cd" />
+  <g fill="none" stroke="#c9b48c" stroke-width="6" stroke-linejoin="round">
+    <path d="M160 58 214 150H106z" />
+  </g>
+  <circle cx="160" cy="118" r="7" fill="#c9b48c" />
+</svg>

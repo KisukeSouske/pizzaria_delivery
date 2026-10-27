@@ -1,0 +1,61 @@
+.painel {
+  position: sticky;
+  top: calc(var(--altura-cabecalho) + 24px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  background-color: var(--cor-superficie);
+  border-radius: var(--raio-grande);
+  box-shadow: var(--sombra-carta);
+}
+
+.titulo {
+  font-size: 1.5rem;
+}
+
+.itens {
+  display: flex;
+  flex-direction: column;
+}
+
+.total {
+  padding-top: 8px;
+  border-top: 1px solid var(--cor-borda);
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-align: right;
+}
+
+.finalizar {
+  padding: 16px;
+  border-radius: var(--raio-medio);
+  background-color: var(--cor-primaria);
+  color: var(--cor-texto-invertido);
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.finalizar:hover:not(:disabled) {
+  background-color: var(--cor-primaria-escura);
+}
+
+.confirmacao {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.link {
+  color: var(--cor-destaque);
+  font-size: 0.9375rem;
+  text-decoration: underline;
+}
+
+@media (max-width: 960px) {
+  .painel {
+    position: static;
+  }
+}

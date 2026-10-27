@@ -1,0 +1,79 @@
+.carta {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px 24px;
+  background-color: var(--cor-superficie);
+  border-radius: var(--raio-grande);
+  box-shadow: var(--sombra-carta);
+}
+
+.cabecalho {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.numero {
+  font-size: 1.125rem;
+}
+
+.total {
+  color: var(--cor-texto-suave);
+  font-variant-numeric: tabular-nums;
+}
+
+.itens {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 16px;
+  border-top: 1px solid var(--cor-borda);
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 40px 1fr auto;
+  align-items: center;
+  gap: 12px;
+}
+
+.miniatura {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 6px;
+  background-color: var(--cor-superficie-suave);
+}
+
+.itemPreco {
+  color: var(--cor-texto-suave);
+  font-variant-numeric: tabular-nums;
+}
+
+.acoes {
+  display: flex;
+  gap: 12px;
+}
+
+.secundario,
+.cancelar {
+  padding: 8px 16px;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-pequeno);
+  font-size: 0.9375rem;
+}
+
+.secundario:hover {
+  background-color: var(--cor-superficie-suave);
+}
+
+.cancelar {
+  border-color: transparent;
+  color: var(--cor-primaria);
+}
+
+.cancelar:hover:not(:disabled) {
+  background-color: var(--cor-erro-fundo);
+}

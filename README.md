@@ -18,6 +18,7 @@ app/
 alembic/                # migrations
 tests/                  # testes automatizados
 assets/                 # imagens do cardápio
+frontend/               # interface React + TypeScript (ver frontend/README.md)
 ```
 
 ## Como rodar
@@ -31,6 +32,19 @@ uvicorn app.main:app --reload
 ```
 
 A documentação interativa fica em http://localhost:8000/docs.
+
+## Interface
+
+Com a API no ar, em outro terminal:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+A interface sobe em http://localhost:5173 e fala com a API por um proxy do
+Vite, então não é preciso liberar CORS. Detalhes em `frontend/README.md`.
 
 ## Migrations
 

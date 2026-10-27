@@ -1,0 +1,11 @@
+.conteudo {
+  max-width: var(--largura-maxima);
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+}
+
+@media (max-width: 760px) {
+  .conteudo {
+    padding: 24px 16px 48px;
+  }
+}

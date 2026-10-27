@@ -1,0 +1,28 @@
+.pagina {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  align-items: start;
+  gap: 32px;
+}
+
+.titulo {
+  margin-bottom: 24px;
+  font-size: 2.75rem;
+  letter-spacing: -0.02em;
+}
+
+.grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+@media (max-width: 960px) {
+  .pagina {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .titulo {
+    font-size: 2rem;
+  }
+}

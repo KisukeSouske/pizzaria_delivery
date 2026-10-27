@@ -1,0 +1,82 @@
+.pagina {
+  display: flex;
+  justify-content: center;
+  padding-top: 24px;
+}
+
+.carta {
+  width: min(420px, 100%);
+  padding: 28px;
+  background-color: var(--cor-superficie);
+  border-radius: var(--raio-grande);
+  box-shadow: var(--sombra-carta);
+}
+
+.abas {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.aba {
+  position: relative;
+  padding: 10px 4px;
+  margin-bottom: -1px;
+  color: var(--cor-texto-suave);
+}
+
+.abaAtiva {
+  color: var(--cor-texto);
+  font-weight: 600;
+}
+
+.abaAtiva::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 3px;
+  background-color: var(--cor-destaque);
+  border-radius: 3px 3px 0 0;
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: var(--cor-texto-suave);
+  font-size: 0.875rem;
+}
+
+.campo input {
+  padding: 11px 14px;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-pequeno);
+  background-color: var(--cor-superficie);
+  font-size: 1rem;
+}
+
+.campo input:focus {
+  border-color: var(--cor-destaque);
+}
+
+.enviar {
+  margin-top: 8px;
+  padding: 14px;
+  border-radius: var(--raio-medio);
+  background-color: var(--cor-primaria);
+  color: var(--cor-texto-invertido);
+  font-size: 1.0625rem;
+  font-weight: 600;
+}
+
+.enviar:hover:not(:disabled) {
+  background-color: var(--cor-primaria-escura);
+}

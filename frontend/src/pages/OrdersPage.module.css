@@ -1,0 +1,24 @@
+.pagina {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 720px;
+}
+
+.titulo {
+  margin-bottom: 8px;
+  font-size: 2.75rem;
+  letter-spacing: -0.02em;
+}
+
+.lista {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (max-width: 960px) {
+  .titulo {
+    font-size: 2rem;
+  }
+}
